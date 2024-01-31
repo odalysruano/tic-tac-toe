@@ -3,9 +3,49 @@
 //   1.2) Define the 8 possible winning combinations, each containing three indexes of the board that make a winner if they hold the same player value.
 
 // 2) Define required variables used to track the state of the game:
-//   2.1) Use a board array to represent the squares.
-//   2.2) Use a turn variable to remember whose turn it is.
-//   2.3) Use a winner variable to represent three different possibilities - player that won, a tie, or game in play.
+//   2.1) Use a board array to represent the squares. 
+//   2.2) Use a turn variable to remember whose turn it is. 
+//   2.3) Use a winner variable to represent three different possibilities - player that won, a tie, or game in play. 
+
+const displayColor = {
+    null: 'white',
+    player1: 'pink',
+    player2: 'blue',
+}
+
+let gameBoard = [
+    [null, null, null], 
+    [null, null, null],
+    [null, null, null],
+];
+
+const players = [1, 2];
+
+let playerTurn = 1;
+
+let winner = null;
+
+function checkWinner(board) {
+    for (let i = 0; i < 3; i++) {
+        if (!winner && board[i][0] == board[i][1] &&
+            board[i][1] == board[i][2]) {
+                winner = board[i][0];
+        } else if (board[0][i] == board[1][i] &&
+            board[1][i] == board[2][i]) {
+                winner = board[1][i];
+        }
+    } 
+    if (!winner && board[0][0] == board[1][1] &&
+        board [1][1] == board [2][2]) {
+            winner = board[0][0];
+    } else if (board[2][0] == board[1][1] &&
+        board[1][1] == board[0][2]) {
+            winner = board[2][0];
+    }
+}
+
+
+
 
 // 3) Store elements on the page that will be accessed in code more than once in variables to make code more concise, readable and performant:
 //   3.1) Store the 9 elements that represent the squares on the page.
@@ -46,3 +86,6 @@
 
 // 6) Handle a player clicking the replay button:
 //   6.1) Do steps 4.1 (initialize the state variables) and 4.2 (render).
+
+
+

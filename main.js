@@ -18,13 +18,18 @@ const resestBtn = document.querySelector("button");
 // Will add these in later
 
 /*----- functions -----*/
-gameBoard = [
-    [null, null, null], 
-    [null, null, null],
-    [null, null, null],
-];
-playerTurn = 1;
-winner = null;
+initialize();
+const initialize = () => {
+    gameBoard = [
+        [null, null, null], 
+        [null, null, null],
+        [null, null, null],
+    ];
+    playerTurn = 1;
+    winner = null;
+    // will create render function in later commit
+    render();
+}
 
 function checkWinner(board) {
     for (let i = 0; i < 3; i++) {

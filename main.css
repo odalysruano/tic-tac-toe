@@ -39,3 +39,7 @@ h1 {
     height: 33%;
     border: solid 1px black;
 }
+
+.avail {
+    cursor: pointer;
+}

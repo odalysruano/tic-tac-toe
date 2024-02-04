@@ -29,7 +29,6 @@ const initialize = () => {
     ];
     playerTurn = 1;
     winner = null;
-    // will create render function in later commit
     render();
 }
 
@@ -48,6 +47,16 @@ function handleMove(e) {
         playerTurn = 1;
     }
     render();   
+}
+
+function render() {
+    renderBoard();
+    renderMessage();
+    if (winner !== null) {
+        resetBtn.disabled = false;
+    } else {
+        resetBtn.disabled = true;
+    }
 }
 
 function checkWinner(board) {

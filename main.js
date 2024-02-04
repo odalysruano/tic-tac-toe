@@ -12,10 +12,12 @@ let winner;
 
 /*----- cached html element references -----*/
 const message = document.querySelector("#winner");
-const resestBtn = document.querySelector("button");
+const resetBtn = document.querySelector("button");
+const boardWrapper = document.querySelector("#board-wrapper");
 
 /*----- event listeners -----*/
-// Will add these in later
+resetBtn.addEventListener("click", initialize);
+boardWrapper.addEventListener("click", handleMove);
 
 /*----- functions -----*/
 initialize();
@@ -29,6 +31,23 @@ const initialize = () => {
     winner = null;
     // will create render function in later commit
     render();
+}
+
+function handleMove(e) {
+    if(e.target.className !== 'cell') return;
+    const col = e.target.parentElement.dataset.num;
+    const row = e.target.dataset.num;
+    let currentSquare = gameBoard[row][col];
+    if (currentSquare !== null) return;
+    if (winner !== null) return;
+    gameBoard[row][col] = playerTurn;
+    checkWinner(gameBoard);
+    if (playerTurn === 1) {
+        playerTurn = 2;
+    } else {
+        playerTurn = 1;
+    }
+    render();   
 }
 
 function checkWinner(board) {

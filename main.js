@@ -1,8 +1,8 @@
 /*----- constants -----*/
 const displayColor = {
     null: 'white',
-    player1: 'pink',
-    player2: 'blue',
+    1: 'pink',
+    2: 'blue',
 }
 
 /*----- app's state (variables) -----*/
@@ -34,8 +34,8 @@ const initialize = () => {
 
 function handleMove(e) {
     if(e.target.className !== 'cell') return;
-    const col = e.target.parentElement.dataset.num;
-    const row = e.target.dataset.num;
+    const col = parseInt(e.target.parentElement.dataset.num, 10);
+    const row = parseInt(e.target.dataset.num, 10);
     let currentSquare = gameBoard[row][col];
     if (currentSquare !== null) return;
     if (winner !== null) return;
@@ -57,6 +57,20 @@ function render() {
     } else {
         resetBtn.disabled = true;
     }
+}
+
+function renderBoard() {
+    const cols = [...boardWrapper.children];
+    cols.forEach(function(col) {
+        const colIdx = parseInt(col.dataset.num, 10);
+        const cells = [...col.children];
+        cells.forEach(function(cell) {
+            const rowIdx = parseInt(cell.dataset.num, 10);
+            const value = gameBoard[rowIdx][colIdx];
+            const backgroundColor = displayColor[value];
+            cell.style.backgroundColor = backgroundColor;
+        })
+    })
 }
 
 function checkWinner(board) {

@@ -73,6 +73,16 @@ function renderBoard() {
     })
 }
 
+function renderMessage() {
+    if (winner === "tie") {
+        message.innerText = "It's a tie!";
+    } else if (winner !== null) {
+        message.innerText = `The winner is player ${winner}!`;
+    } else {
+        message.innerText = `It's player ${playerTurn}'s turn.`;
+    }
+}
+
 function checkWinner(board) {
     for (let i = 0; i < 3; i++) {
         if (!winner && board[i][0] == board[i][1] &&

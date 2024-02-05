@@ -9,6 +9,7 @@ const displayColor = {
 let gameBoard;
 let playerTurn;
 let winner;
+let cellsClicked;
 
 /*----- cached html element references -----*/
 const message = document.querySelector("#winner");
@@ -26,6 +27,7 @@ function initialize() {
         [null, null, null],
         [null, null, null],
     ];
+    cellsClicked = 0;
     playerTurn = 1;
     winner = null;
     render();
@@ -41,6 +43,7 @@ function handleMove(e) {
     if (currentSquare !== null) return;
     if (winner !== null) return;
     gameBoard[row][col] = playerTurn;
+    cellsClicked += 1;
     checkWinner(gameBoard);
     if (playerTurn === 1) {
         playerTurn = 2;
@@ -75,7 +78,7 @@ function renderBoard() {
 }
 
 function renderMessage() {
-    if (winner === "tie") {
+    if (cellsClicked === 9 && winner === null) {
         message.innerText = "It's a tie!";
     } else if (winner !== null) {
         message.innerText = `The winner is player ${winner}!`;

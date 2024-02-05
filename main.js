@@ -20,7 +20,7 @@ resetBtn.addEventListener("click", initialize);
 boardWrapper.addEventListener("click", handleMove);
 
 /*----- functions -----*/
-const initialize = () => {
+function initialize() {
     gameBoard = [
         [null, null, null], 
         [null, null, null],

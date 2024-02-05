@@ -56,7 +56,7 @@ function handleMove(e) {
 function render() {
     renderBoard();
     renderMessage();
-    if (winner !== null) {
+    if (winner !== null || cellsClicked === 9) {
         resetBtn.disabled = false;
     } else {
         resetBtn.disabled = true;

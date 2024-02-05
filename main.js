@@ -20,7 +20,6 @@ resetBtn.addEventListener("click", initialize);
 boardWrapper.addEventListener("click", handleMove);
 
 /*----- functions -----*/
-initialize();
 const initialize = () => {
     gameBoard = [
         [null, null, null], 
@@ -31,6 +30,8 @@ const initialize = () => {
     winner = null;
     render();
 }
+
+initialize();
 
 function handleMove(e) {
     if(e.target.className !== 'cell') return;
